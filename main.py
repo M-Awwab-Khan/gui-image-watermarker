@@ -16,6 +16,7 @@ class App:
         self.panelB.grid(row=1, column=6, padx=20, pady=20)
         tk.Label(self.panelB, text='Click the button below to upload image').pack()
         tk.Button(self.panelB, text='Upload', command=self.upload).pack()
+        tk.Button(self.panelB, text='Close Image', command=self.close_img).pack()
         self.window.mainloop()
 
     def upload(self):
@@ -37,6 +38,9 @@ class App:
         self.panelA.grid(row= 1, column=1 , rowspan= 13, columnspan= 3, padx=20, pady=20)
         
         return image_tk
+    
+    def close_img(self):
+        self.panelA.destroy()
 
 if __name__ == '__main__':
     app = App()
