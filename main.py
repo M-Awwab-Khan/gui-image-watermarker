@@ -13,3 +13,6 @@ class App:
         self.window.title('Image Watermarker')
         
         self.window.mainloop()
+
+if __name__ == '__main__':
+    app = App()
