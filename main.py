@@ -50,5 +50,33 @@ class App:
     def choose_color(self):
         self.color_code = colorchooser.askcolor(title ="Choose color") 
 
+    
+    def apply_watermark(self):
+        # text Watermark
+        watermark_image = self.o_image.copy()
+        
+        draw = ImageDraw.Draw(watermark_image)
+        # ("font type",font size)
+        w, h = self.o_image.size
+        x, y = int(w / 2), int(h / 2)
+        if x > y:
+            font_size = y
+        elif y > x:
+            font_size = x
+        else:
+            font_size = x
+        
+        font = ImageFont.truetype("arial.ttf", int(font_size/6))
+        # add Watermark
+        # (0,0,0)-black color text
+        draw.text((x, y), self.watermark_text.get(), fill=(255, 255, 255), font=font, anchor='ms')
+        watermarked_image = ImageTk.PhotoImage(watermark_image)
+        self.close_img()
+        self.panelA = tk.Label(image=watermarked_image, borderwidth=5, relief="sunken")
+        self.panelA.image = watermarked_image
+        self.panelA.grid(row= 1, column=1 , rowspan= 13, columnspan= 3, padx=20, pady=20)
+
+        
+    
 if __name__ == '__main__':
     app = App()
