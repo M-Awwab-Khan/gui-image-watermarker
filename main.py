@@ -20,6 +20,7 @@ class App:
         self.window.mainloop()
 
     def upload(self):
+        self.close_img()
         f_types = [('Jpg Files', '*.jpg'),('PNG Files','*.png')] 
         path = filedialog.askopenfilename(filetypes=f_types)
         self.o_image = Image.open(path) 
@@ -40,7 +41,10 @@ class App:
         return image_tk
     
     def close_img(self):
-        self.panelA.destroy()
+        try:
+            self.panelA.destroy()
+        except AttributeError:
+            pass
 
 if __name__ == '__main__':
     app = App()
