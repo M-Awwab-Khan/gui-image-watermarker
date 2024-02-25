@@ -12,8 +12,10 @@ class App:
         self.window.geometry('1280x720')
         self.window.title('Image Watermarker')
         
-        self.upload()
-
+        self.panelB = tk.Frame(self.window)
+        self.panelB.grid(row=1, column=6, padx=20, pady=20)
+        tk.Label(self.panelB, text='Click the button below to upload image').pack()
+        tk.Button(self.panelB, text='Upload', command=self.upload).pack()
         self.window.mainloop()
 
     def upload(self):
