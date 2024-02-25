@@ -47,5 +47,8 @@ class App:
         except AttributeError:
             pass
 
+    def choose_color(self):
+        self.color_code = colorchooser.askcolor(title ="Choose color") 
+
 if __name__ == '__main__':
     app = App()
