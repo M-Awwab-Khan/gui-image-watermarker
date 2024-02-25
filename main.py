@@ -21,8 +21,14 @@ class App:
         path = filedialog.askopenfilename(filetypes=f_types)
         self.o_image = Image.open(path) 
 
+        # Set the desired width
+        new_width = 600  # replace with your desired width
 
-        image_tk = ImageTk.PhotoImage(self.o_image)
+        # Calculate the proportional height
+        original_width, original_height = self.o_image.size
+        new_height = int(original_height * (new_width / original_width))
+
+        image_tk = ImageTk.PhotoImage(self.o_image.resize((new_width, new_height)))
 
         self.panelA = tk.Label(image=image_tk, borderwidth=5, relief="sunken")
         self.panelA.image = image_tk
