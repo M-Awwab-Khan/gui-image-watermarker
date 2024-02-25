@@ -49,6 +49,7 @@ class App:
 
     def choose_color(self):
         self.color_code = colorchooser.askcolor(title ="Choose color") 
+        print(self.color_code)
 
     
     def apply_watermark(self):
@@ -69,7 +70,7 @@ class App:
         font = ImageFont.truetype("arial.ttf", int(font_size/6))
         # add Watermark
         # (0,0,0)-black color text
-        draw.text((x, y), self.watermark_text.get(), fill=(255, 255, 255), font=font, anchor='ms')
+        draw.text((x, y), self.watermark_text.get(), fill=self.color_code[0], font=font, anchor='ms')
         watermarked_image = ImageTk.PhotoImage(watermark_image)
         self.close_img()
         self.panelA = tk.Label(image=watermarked_image, borderwidth=5, relief="sunken")
