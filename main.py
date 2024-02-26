@@ -18,6 +18,7 @@ class App:
         self.watermark_text.grid(row=2, column=0, padx=10, pady=10)
         tk.Button(self.panelB, text='Apply Watermark', command=self.apply_watermark).grid(row=2, column=1, padx=10, pady=10)
         tk.Button(self.panelB, text='Choose Color', command=self.choose_color).grid(row=2, column=2, padx=10, pady=10)
+        tk.Button(self.panelB, text='Save Image', command=self.save_image).grid(row=3, column=1, padx=10, pady=10)
         self.window.mainloop()
 
     def upload(self):
@@ -54,9 +55,9 @@ class App:
     
     def apply_watermark(self):
         # text Watermark
-        watermark_image = self.o_image.copy()
+        self.watermark_image = self.o_image.copy()
         
-        draw = ImageDraw.Draw(watermark_image)
+        draw = ImageDraw.Draw(self.watermark_image)
         # ("font type",font size)
         w, h = self.o_image.size
         x, y = int(w / 2), int(h / 2)
@@ -71,13 +72,11 @@ class App:
         # add Watermark
         # (0,0,0)-black color text
         draw.text((x, y), self.watermark_text.get(), fill=self.color_code[0], font=font, anchor='ms')
-        watermarked_image = ImageTk.PhotoImage(watermark_image)
+        watermark_image_tk = ImageTk.PhotoImage(self.watermark_image)
         self.close_img()
-        self.panelA = tk.Label(image=watermarked_image, borderwidth=5, relief="sunken")
-        self.panelA.image = watermarked_image
+        self.panelA = tk.Label(image=watermark_image_tk, borderwidth=5, relief="sunken")
+        self.panelA.image = watermark_image_tk
         self.panelA.grid(row= 1, column=1 , rowspan= 13, columnspan= 3, padx=20, pady=20)
-
-        
     
 if __name__ == '__main__':
     app = App()
