@@ -77,6 +77,11 @@ class App:
         self.panelA = tk.Label(image=watermark_image_tk, borderwidth=5, relief="sunken")
         self.panelA.image = watermark_image_tk
         self.panelA.grid(row= 1, column=1 , rowspan= 13, columnspan= 3, padx=20, pady=20)
+
+    def save_image(self):
+        file = filedialog.asksaveasfilename(defaultextension=".jpg", title="Save File", filetypes=(("JPEG Files", "*.jpg"), ))
+        if file:
+            self.watermark_image.save(file)
     
 if __name__ == '__main__':
     app = App()
